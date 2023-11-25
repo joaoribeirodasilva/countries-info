@@ -1,115 +1,428 @@
 // [Source]https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 package iso_639_1
 
+import (
+	"strings"
+
+	"github.com/joaoribeirodasilva/countries_info/iso639"
+)
+
 type ISO639_1 string
 
-const (
-	None                ISO639_1 = ""
-	Abkhazian           ISO639_1 = "ab"
-	Afar                ISO639_1 = "aa"
-	Afrikaans           ISO639_1 = "af"
-	Akan                ISO639_1 = "ak"
-	Albanian            ISO639_1 = "sq"
-	Amharic             ISO639_1 = "am"
-	Arabic              ISO639_1 = "ar"
-	Aragonese           ISO639_1 = "an"
-	Armenian            ISO639_1 = "hy"
-	Assamese            ISO639_1 = "as"
-	Avaric              ISO639_1 = "av"
-	Avestan             ISO639_1 = "ae"
-	Aymara              ISO639_1 = "ay"
-	Azerbaijani         ISO639_1 = "az"
-	Bambara             ISO639_1 = "bm"
-	Bashkir             ISO639_1 = "ba"
-	Basque              ISO639_1 = "eu"
-	Belarusian          ISO639_1 = "be"
-	Bengali             ISO639_1 = "bn"
-	Bislama             ISO639_1 = "bi"
-	Bosnian             ISO639_1 = "bs"
-	Breton              ISO639_1 = "br"
-	Bulgarian           ISO639_1 = "bg"
-	Burmese             ISO639_1 = "my"
-	Catalan             ISO639_1 = "ca"
-	Valencian           ISO639_1 = "ca"
-	Chamorro            ISO639_1 = "ch"
-	Chechen             ISO639_1 = "ce"
-	Chichewa            ISO639_1 = "ny"
-	Chewa               ISO639_1 = "ny"
-	Nyanja              ISO639_1 = "ny"
-	Chinese             ISO639_1 = "zh"
-	Church_Slavonic     ISO639_1 = "cu"
-	Old_Slavonic        ISO639_1 = "cu"
-	Old_Church_Slavonic ISO639_1 = "cu"
-	Chuvash             ISO639_1 = "cv"
-	Cornish             ISO639_1 = "kw"
-	Corsican            ISO639_1 = "co"
-	Cree                ISO639_1 = "cr"
-	Croatian            ISO639_1 = "hr"
-	Czech               ISO639_1 = "cs"
-	Danish              ISO639_1 = "da"
-	Divehi              ISO639_1 = "dv"
-	Dhivehi             ISO639_1 = "dv"
-	Maldivian           ISO639_1 = "dv"
-	Dutch               ISO639_1 = "nl"
-	Flemish             ISO639_1 = "nl"
-	Dzongkha            ISO639_1 = "dz"
-	English             ISO639_1 = "en"
-	Esperanto           ISO639_1 = "eo"
-	Estonian            ISO639_1 = "et"
-	Ewe                 ISO639_1 = "ee"
-	Faroese             ISO639_1 = "fo"
-	Fijian              ISO639_1 = "fj"
-	Finnish             ISO639_1 = "fi"
-	French              ISO639_1 = "fr"
-	Western_Frisian     ISO639_1 = "fy"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-	// Faroese             ISO639_1 = "fo"
-)
+var iso639_1 = map[iso639.ID]ISO639_1{
+
+	iso639.CODE_None:                "",
+	iso639.CODE_Abkhazian:           "ab",
+	iso639.CODE_Afar:                "aa",
+	iso639.CODE_Afrikaans:           "af",
+	iso639.CODE_Akan:                "ak",
+	iso639.CODE_Albanian:            "sq",
+	iso639.CODE_Amharic:             "am",
+	iso639.CODE_Arabic:              "ar",
+	iso639.CODE_Aragonese:           "an",
+	iso639.CODE_Armenian:            "hy",
+	iso639.CODE_Assamese:            "as",
+	iso639.CODE_Avaric:              "av",
+	iso639.CODE_Avestan:             "ae",
+	iso639.CODE_Aymara:              "ay",
+	iso639.CODE_Azerbaijani:         "az",
+	iso639.CODE_Bambara:             "bm",
+	iso639.CODE_Bashkir:             "ba",
+	iso639.CODE_Basque:              "eu",
+	iso639.CODE_Belarusian:          "be",
+	iso639.CODE_Bengali:             "bn",
+	iso639.CODE_Bislama:             "bi",
+	iso639.CODE_Bosnian:             "bs",
+	iso639.CODE_Breton:              "br",
+	iso639.CODE_Bulgarian:           "bg",
+	iso639.CODE_Burmese:             "my",
+	iso639.CODE_Catalan:             "ca",
+	iso639.CODE_Valencian:           "ca",
+	iso639.CODE_Chamorro:            "ch",
+	iso639.CODE_Chechen:             "ce",
+	iso639.CODE_Chichewa:            "ny",
+	iso639.CODE_Chewa:               "ny",
+	iso639.CODE_Nyanja:              "ny",
+	iso639.CODE_Chinese:             "zh",
+	iso639.CODE_Church_Slavonic:     "cu",
+	iso639.CODE_Old_Slavonic:        "cu",
+	iso639.CODE_Old_Church_Slavonic: "cu",
+	iso639.CODE_Chuvash:             "cv",
+	iso639.CODE_Cornish:             "kw",
+	iso639.CODE_Corsican:            "co",
+	iso639.CODE_Cree:                "cr",
+	iso639.CODE_Croatian:            "hr",
+	iso639.CODE_Czech:               "cs",
+	iso639.CODE_Danish:              "da",
+	iso639.CODE_Divehi:              "dv",
+	iso639.CODE_Dhivehi:             "dv",
+	iso639.CODE_Maldivian:           "dv",
+	iso639.CODE_Dutch:               "nl",
+	iso639.CODE_Flemish:             "nl",
+	iso639.CODE_Dzongkha:            "dz",
+	iso639.CODE_English:             "en",
+	iso639.CODE_Esperanto:           "eo",
+	iso639.CODE_Estonian:            "et",
+	iso639.CODE_Ewe:                 "ee",
+	iso639.CODE_Faroese:             "fo",
+	iso639.CODE_Fijian:              "fj",
+	iso639.CODE_Finnish:             "fi",
+	iso639.CODE_French:              "fr",
+	iso639.CODE_Western_Frisian:     "fy",
+	iso639.CODE_Fulah:               "ff",
+	iso639.CODE_Gaelic:              "gd",
+	iso639.CODE_Scottish_Gaelic:     "gd",
+	iso639.CODE_Galician:            "gl",
+	iso639.CODE_Ganda:               "lg",
+	iso639.CODE_Georgian:            "ka",
+	iso639.CODE_German:              "de",
+	iso639.CODE_Greek:               "el",
+	iso639.CODE_Kalaallisut:         "kl",
+	iso639.CODE_Greenlandic:         "kl",
+	iso639.CODE_Guarani:             "gn",
+	iso639.CODE_Gujarati:            "gu",
+	iso639.CODE_Haitian:             "ht",
+	iso639.CODE_Haitian_Creole:      "ht",
+	iso639.CODE_Hausa:               "ha",
+	iso639.CODE_Hebrew:              "he",
+	iso639.CODE_Herero:              "hz",
+	iso639.CODE_Hindi:               "hi",
+	iso639.CODE_Hiri_Motu:           "ho",
+	iso639.CODE_Hungarian:           "hu",
+	iso639.CODE_Icelandic:           "is",
+	iso639.CODE_Ido:                 "io",
+	iso639.CODE_Igbo:                "ig",
+	iso639.CODE_Indonesian:          "id",
+	iso639.CODE_Interlingua:         "ia",
+	iso639.CODE_Interlingue:         "ie",
+	iso639.CODE_Occidental:          "ie",
+	iso639.CODE_Inuktitut:           "iu",
+	iso639.CODE_Inupiaq:             "ik",
+	iso639.CODE_Irish:               "ga",
+	iso639.CODE_Italian:             "it",
+	iso639.CODE_Japanese:            "ja",
+	iso639.CODE_Javanese:            "jv",
+	iso639.CODE_Kannada:             "kn",
+	iso639.CODE_Kanuri:              "kr",
+	iso639.CODE_Kashmiri:            "ks",
+	iso639.CODE_Kazakh:              "kk",
+	iso639.CODE_Central_Khmer:       "km",
+	iso639.CODE_Kikuyu:              "ki",
+	iso639.CODE_Gikuyu:              "ki",
+	iso639.CODE_Kinyarwanda:         "rw",
+	iso639.CODE_Kirghiz:             "ky",
+	iso639.CODE_Kyrgyz:              "ky",
+	iso639.CODE_Komi:                "kv",
+	iso639.CODE_Kongo:               "kg",
+	iso639.CODE_Korean:              "ko",
+	iso639.CODE_Kuanyama:            "kj",
+	iso639.CODE_Kwanyama:            "kj",
+	iso639.CODE_Kurdish:             "ku",
+	iso639.CODE_Lao:                 "lo",
+	iso639.CODE_Latin:               "la",
+	iso639.CODE_Latvian:             "lv",
+	iso639.CODE_Limburgan:           "li",
+	iso639.CODE_Limburger:           "li",
+	iso639.CODE_Limburgish:          "li",
+	iso639.CODE_Lingala:             "ln",
+	iso639.CODE_Lithuanian:          "lt",
+	iso639.CODE_Luba_Katanga:        "lu",
+	iso639.CODE_Luxembourgish:       "lb",
+	iso639.CODE_Letzeburgesch:       "lb",
+	iso639.CODE_Macedonian:          "mk",
+	iso639.CODE_Malagasy:            "mg",
+	iso639.CODE_Malay:               "ms",
+	iso639.CODE_Malayalam:           "ml",
+	iso639.CODE_Maltese:             "mt",
+	iso639.CODE_Manx:                "gv",
+	iso639.CODE_Maori:               "mi",
+	iso639.CODE_Marathi:             "mr",
+	iso639.CODE_Marshallese:         "mh",
+	iso639.CODE_Mongolian:           "mn",
+	iso639.CODE_Nauru:               "na",
+	iso639.CODE_Navajo:              "nv",
+	iso639.CODE_Navaho:              "nv",
+	iso639.CODE_North_Ndebele:       "nd",
+	iso639.CODE_South_Ndebele:       "nr",
+	iso639.CODE_Ndonga:              "ng",
+	iso639.CODE_Nepali:              "ne",
+	iso639.CODE_Norwegian:           "no",
+	iso639.CODE_Norwegian_Bokmal:    "nb",
+	iso639.CODE_Norwegian_Nynorsk:   "nn",
+	iso639.CODE_Sichuan_Yi:          "ii",
+	iso639.CODE_Nuosu:               "ii",
+	iso639.CODE_Occitan:             "oc",
+	iso639.CODE_Ojibwa:              "oj",
+	iso639.CODE_Oriya:               "or",
+	iso639.CODE_Oromo:               "om",
+	iso639.CODE_Ossetian:            "os",
+	iso639.CODE_Ossetic:             "os",
+	iso639.CODE_Pali:                "pi",
+	iso639.CODE_Pashto:              "ps",
+	iso639.CODE_Pushto:              "ps",
+	iso639.CODE_Persian:             "fa",
+	iso639.CODE_Polish:              "pl",
+	iso639.CODE_Portuguese:          "pt",
+	iso639.CODE_Punjabi:             "pa",
+	iso639.CODE_Panjabi:             "pa",
+	iso639.CODE_Quechua:             "qu",
+	iso639.CODE_Romanian:            "ro",
+	iso639.CODE_Moldavian:           "ro",
+	iso639.CODE_Moldovan:            "ro",
+	iso639.CODE_Romansh:             "rm",
+	iso639.CODE_Rundi:               "rn",
+	iso639.CODE_Russian:             "ru",
+	iso639.CODE_Northern_Sami:       "se",
+	iso639.CODE_Samoan:              "sm",
+	iso639.CODE_Sango:               "sg",
+	iso639.CODE_Sanskrit:            "sa",
+	iso639.CODE_Sardinian:           "sc",
+	iso639.CODE_Serbian:             "sr",
+	iso639.CODE_Shona:               "sn",
+	iso639.CODE_Sindhi:              "sd",
+	iso639.CODE_Sinhala:             "si",
+	iso639.CODE_Sinhalese:           "si",
+	iso639.CODE_Slovak:              "sk",
+	iso639.CODE_Slovenian:           "sl",
+	iso639.CODE_Somali:              "so",
+	iso639.CODE_Southern_Sotho:      "st",
+	iso639.CODE_Spanish:             "es",
+	iso639.CODE_Castilian:           "es",
+	iso639.CODE_Sundanese:           "su",
+	iso639.CODE_Swahili:             "sw",
+	iso639.CODE_Swati:               "ss",
+	iso639.CODE_Swedish:             "sv",
+	iso639.CODE_Tagalog:             "tl",
+	iso639.CODE_Tahitian:            "ty",
+	iso639.CODE_Tajik:               "tg",
+	iso639.CODE_Tamil:               "ta",
+	iso639.CODE_Tatar:               "tt",
+	iso639.CODE_Telugu:              "te",
+	iso639.CODE_Thai:                "th",
+	iso639.CODE_Tibetan:             "bo",
+	iso639.CODE_Tigrinya:            "ti",
+	iso639.CODE_Tonga:               "to",
+	iso639.CODE_Tsonga:              "ts",
+	iso639.CODE_Tswana:              "tn",
+	iso639.CODE_Turkish:             "tr",
+	iso639.CODE_Turkmen:             "tk",
+	iso639.CODE_Twi:                 "tw",
+	iso639.CODE_Uighur:              "ug",
+	iso639.CODE_Uyghur:              "ug",
+	iso639.CODE_Ukrainian:           "uk",
+	iso639.CODE_Urdu:                "ur",
+	iso639.CODE_Uzbek:               "uz",
+	iso639.CODE_Venda:               "ve",
+	iso639.CODE_Vietnamese:          "vi",
+	iso639.CODE_Volapuk:             "vo",
+	iso639.CODE_Walloon:             "wa",
+	iso639.CODE_Welsh:               "cy",
+	iso639.CODE_Wolof:               "wo",
+	iso639.CODE_Xhosa:               "xh",
+	iso639.CODE_Yiddish:             "yi",
+	iso639.CODE_Yoruba:              "yo",
+	iso639.CODE_Zhuang:              "za",
+	iso639.CODE_Chuang:              "za",
+	iso639.CODE_Zulu:                "zu",
+}
+
+var ids = map[ISO639_1]iso639.ID{
+	"":   iso639.CODE_None,
+	"ab": iso639.CODE_Abkhazian,
+	"aa": iso639.CODE_Afar,
+	"af": iso639.CODE_Afrikaans,
+	"ak": iso639.CODE_Akan,
+	"sq": iso639.CODE_Albanian,
+	"am": iso639.CODE_Amharic,
+	"ar": iso639.CODE_Arabic,
+	"an": iso639.CODE_Aragonese,
+	"hy": iso639.CODE_Armenian,
+	"as": iso639.CODE_Assamese,
+	"av": iso639.CODE_Avaric,
+	"ae": iso639.CODE_Avestan,
+	"ay": iso639.CODE_Aymara,
+	"az": iso639.CODE_Azerbaijani,
+	"bm": iso639.CODE_Bambara,
+	"ba": iso639.CODE_Bashkir,
+	"eu": iso639.CODE_Basque,
+	"be": iso639.CODE_Belarusian,
+	"bn": iso639.CODE_Bengali,
+	"bi": iso639.CODE_Bislama,
+	"bs": iso639.CODE_Bosnian,
+	"br": iso639.CODE_Breton,
+	"bg": iso639.CODE_Bulgarian,
+	"my": iso639.CODE_Burmese,
+	"ca": iso639.CODE_Catalan,
+	"ch": iso639.CODE_Chamorro,
+	"ce": iso639.CODE_Chechen,
+	"ny": iso639.CODE_Chichewa,
+	"zh": iso639.CODE_Chinese,
+	"cu": iso639.CODE_Church_Slavonic,
+	"cv": iso639.CODE_Chuvash,
+	"kw": iso639.CODE_Cornish,
+	"co": iso639.CODE_Corsican,
+	"cr": iso639.CODE_Cree,
+	"hr": iso639.CODE_Croatian,
+	"cs": iso639.CODE_Czech,
+	"da": iso639.CODE_Danish,
+	"dv": iso639.CODE_Maldivian,
+	"nl": iso639.CODE_Dutch,
+	"dz": iso639.CODE_Dzongkha,
+	"en": iso639.CODE_English,
+	"eo": iso639.CODE_Esperanto,
+	"et": iso639.CODE_Estonian,
+	"ee": iso639.CODE_Ewe,
+	"fo": iso639.CODE_Faroese,
+	"fj": iso639.CODE_Fijian,
+	"fi": iso639.CODE_Finnish,
+	"fr": iso639.CODE_French,
+	"fy": iso639.CODE_Western_Frisian,
+	"ff": iso639.CODE_Fulah,
+	"gd": iso639.CODE_Gaelic,
+	"gl": iso639.CODE_Galician,
+	"lg": iso639.CODE_Ganda,
+	"ka": iso639.CODE_Georgian,
+	"de": iso639.CODE_German,
+	"el": iso639.CODE_Greek,
+	"kl": iso639.CODE_Kalaallisut,
+	"gn": iso639.CODE_Guarani,
+	"gu": iso639.CODE_Gujarati,
+	"ht": iso639.CODE_Haitian,
+	"ha": iso639.CODE_Hausa,
+	"he": iso639.CODE_Hebrew,
+	"hz": iso639.CODE_Herero,
+	"hi": iso639.CODE_Hindi,
+	"ho": iso639.CODE_Hiri_Motu,
+	"hu": iso639.CODE_Hungarian,
+	"is": iso639.CODE_Icelandic,
+	"io": iso639.CODE_Ido,
+	"ig": iso639.CODE_Igbo,
+	"id": iso639.CODE_Indonesian,
+	"ia": iso639.CODE_Interlingua,
+	"ie": iso639.CODE_Interlingue,
+	"iu": iso639.CODE_Inuktitut,
+	"ik": iso639.CODE_Inupiaq,
+	"ga": iso639.CODE_Irish,
+	"it": iso639.CODE_Italian,
+	"ja": iso639.CODE_Japanese,
+	"jv": iso639.CODE_Javanese,
+	"kn": iso639.CODE_Kannada,
+	"kr": iso639.CODE_Kanuri,
+	"ks": iso639.CODE_Kashmiri,
+	"kk": iso639.CODE_Kazakh,
+	"km": iso639.CODE_Central_Khmer,
+	"ki": iso639.CODE_Kikuyu,
+	"rw": iso639.CODE_Kinyarwanda,
+	"ky": iso639.CODE_Kirghiz,
+	"kv": iso639.CODE_Komi,
+	"kg": iso639.CODE_Kongo,
+	"ko": iso639.CODE_Korean,
+	"kj": iso639.CODE_Kuanyama,
+	"ku": iso639.CODE_Kurdish,
+	"lo": iso639.CODE_Lao,
+	"la": iso639.CODE_Latin,
+	"lv": iso639.CODE_Latvian,
+	"li": iso639.CODE_Limburgan,
+	"ln": iso639.CODE_Lingala,
+	"lt": iso639.CODE_Lithuanian,
+	"lu": iso639.CODE_Luba_Katanga,
+	"lb": iso639.CODE_Luxembourgish,
+	"mk": iso639.CODE_Macedonian,
+	"mg": iso639.CODE_Malagasy,
+	"ms": iso639.CODE_Malay,
+	"ml": iso639.CODE_Malayalam,
+	"mt": iso639.CODE_Maltese,
+	"gv": iso639.CODE_Manx,
+	"mi": iso639.CODE_Maori,
+	"mr": iso639.CODE_Marathi,
+	"mh": iso639.CODE_Marshallese,
+	"mn": iso639.CODE_Mongolian,
+	"na": iso639.CODE_Nauru,
+	"nv": iso639.CODE_Navajo,
+	"nd": iso639.CODE_North_Ndebele,
+	"nr": iso639.CODE_South_Ndebele,
+	"ng": iso639.CODE_Ndonga,
+	"ne": iso639.CODE_Nepali,
+	"no": iso639.CODE_Norwegian,
+	"nb": iso639.CODE_Norwegian_Bokmal,
+	"nn": iso639.CODE_Norwegian_Nynorsk,
+	"ii": iso639.CODE_Sichuan_Yi,
+	"oc": iso639.CODE_Occitan,
+	"oj": iso639.CODE_Ojibwa,
+	"or": iso639.CODE_Oriya,
+	"om": iso639.CODE_Oromo,
+	"os": iso639.CODE_Ossetian,
+	"pi": iso639.CODE_Pali,
+	"ps": iso639.CODE_Pashto,
+	"fa": iso639.CODE_Persian,
+	"pl": iso639.CODE_Polish,
+	"pt": iso639.CODE_Portuguese,
+	"pa": iso639.CODE_Punjabi,
+	"qu": iso639.CODE_Quechua,
+	"ro": iso639.CODE_Romanian,
+	"rm": iso639.CODE_Romansh,
+	"rn": iso639.CODE_Rundi,
+	"ru": iso639.CODE_Russian,
+	"se": iso639.CODE_Northern_Sami,
+	"sm": iso639.CODE_Samoan,
+	"sg": iso639.CODE_Sango,
+	"sa": iso639.CODE_Sanskrit,
+	"sc": iso639.CODE_Sardinian,
+	"sr": iso639.CODE_Serbian,
+	"sn": iso639.CODE_Shona,
+	"sd": iso639.CODE_Sindhi,
+	"si": iso639.CODE_Sinhala,
+	"sk": iso639.CODE_Slovak,
+	"sl": iso639.CODE_Slovenian,
+	"so": iso639.CODE_Somali,
+	"st": iso639.CODE_Southern_Sotho,
+	"es": iso639.CODE_Spanish,
+	"su": iso639.CODE_Sundanese,
+	"sw": iso639.CODE_Swahili,
+	"ss": iso639.CODE_Swati,
+	"sv": iso639.CODE_Swedish,
+	"tl": iso639.CODE_Tagalog,
+	"ty": iso639.CODE_Tahitian,
+	"tg": iso639.CODE_Tajik,
+	"ta": iso639.CODE_Tamil,
+	"tt": iso639.CODE_Tatar,
+	"te": iso639.CODE_Telugu,
+	"th": iso639.CODE_Thai,
+	"bo": iso639.CODE_Tibetan,
+	"ti": iso639.CODE_Tigrinya,
+	"to": iso639.CODE_Tonga,
+	"ts": iso639.CODE_Tsonga,
+	"tn": iso639.CODE_Tswana,
+	"tr": iso639.CODE_Turkish,
+	"tk": iso639.CODE_Turkmen,
+	"tw": iso639.CODE_Twi,
+	"ug": iso639.CODE_Uighur,
+	"uk": iso639.CODE_Ukrainian,
+	"ur": iso639.CODE_Urdu,
+	"uz": iso639.CODE_Uzbek,
+	"ve": iso639.CODE_Venda,
+	"vi": iso639.CODE_Vietnamese,
+	"vo": iso639.CODE_Volapuk,
+	"wa": iso639.CODE_Walloon,
+	"cy": iso639.CODE_Welsh,
+	"wo": iso639.CODE_Wolof,
+	"xh": iso639.CODE_Xhosa,
+	"yi": iso639.CODE_Yiddish,
+	"yo": iso639.CODE_Yoruba,
+	"za": iso639.CODE_Zhuang,
+	"zu": iso639.CODE_Zulu,
+}
+
+func GetID(code string) iso639.ID {
+
+	val, ok := ids[ISO639_1(strings.ToLower(code))]
+	if !ok {
+		return ids[""]
+	}
+	return val
+}
+
+func GetCode(id iso639.ID) ISO639_1 {
+
+	return iso639_1[id]
+}

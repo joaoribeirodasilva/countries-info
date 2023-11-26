@@ -197,7 +197,7 @@ Turkmen	            tk	tuk	tuk	tuk	түркmенче
 Twi	                tw	twi	twi	twi	twi
 Uighur	            ug	uig	uig	uig	Уйғур
 Uyghur              ug	uig	uig	uig Уйғур
-Ukrainian	        uk	ukr	ukr	ukr	Ukrainian
+Ukrainian	        uk	ukr	ukr	ukr	Українська
 Urdu	            ur	urd	urd	urd	اردو
 Uzbek	            uz	uzb	uzb	uzb o’zbek
 Venda	            ve	ven	ven	ven	tshiVenḓa
